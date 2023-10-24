@@ -1,0 +1,48 @@
+{
+  "name": "vscode-clipboard-logger",
+  "displayName": "Clipboard Logger",
+  "description": "A VS Code extension to quickly insert log statements with or without variable dump in JavaScript and PHP files.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.83.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osandell/vscode-clipboard-logger.git"
+  },
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.logClipboard",
+        "title": "Log clipboard"
+      },
+      {
+        "command": "extension.logClipboardAsVariable",
+        "title": "Log clipboard + variable of same name"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "yarn run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.2",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.83.0",
+    "@vscode/test-electron": "^2.3.4",
+    "eslint": "^8.50.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "global": "^4.4.0"
+  }
+}
