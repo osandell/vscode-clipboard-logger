@@ -6,9 +6,12 @@ const vscode = require("vscode");
 function activate(context) {
   let disposableLogClipboard = vscode.commands.registerCommand(
     "extension.logClipboard",
-    function () {
+    async function () {
       let editor = vscode.window.activeTextEditor;
       if (editor) {
+        const clipboardContent = await vscode.env.clipboard.readText();
+        await vscode.env.clipboard.writeText(clipboardContent.trimStart());
+
         let fileType = editor.document.languageId;
         let snippet;
         if (
@@ -22,7 +25,7 @@ function activate(context) {
           );
         } else if (fileType === "php") {
           snippet = new vscode.SnippetString(
-            '$1error_log("$CLIPBOARD - $TM_FILENAME $TM_LINE_INDEX");'
+            '$1error_log("$CLIPBOARD - $TM_FILENAME " . __LINE__);'
           );
         } else {
           return;
@@ -35,9 +38,12 @@ function activate(context) {
 
   let disposableLogClipboardAsVariable = vscode.commands.registerCommand(
     "extension.logClipboardAsVariable",
-    function () {
+    async function () {
       let editor = vscode.window.activeTextEditor;
       if (editor) {
+        const clipboardContent = await vscode.env.clipboard.readText();
+        await vscode.env.clipboard.writeText(clipboardContent.trimStart());
+
         let fileType = editor.document.languageId;
         let snippet;
         if (
@@ -51,7 +57,7 @@ function activate(context) {
           );
         } else if (fileType === "php") {
           snippet = new vscode.SnippetString(
-            '$1error_log("$" . "$CLIPBOARD: " . print_r($$CLIPBOARD, true) . " - $TM_FILENAME $TM_LINE_INDEX");'
+            '$1error_log("$" . "$CLIPBOARD: " . print_r($$CLIPBOARD, true) . " - $TM_FILENAME " . __LINE__);'
           );
         } else {
           return;
