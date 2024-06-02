@@ -25,7 +25,7 @@ function activate(context) {
           );
         } else if (fileType === "php") {
           snippet = new vscode.SnippetString(
-            '$1error_log("$CLIPBOARD - $TM_FILENAME " . __LINE__);'
+            '$1error_log("$CLIPBOARD - $TM_FILENAME " . __LINE__ . "\\n", 3, "/tmp/clipboard_logger_php.log" );'
           );
         } else {
           return;
@@ -57,7 +57,7 @@ function activate(context) {
           );
         } else if (fileType === "php") {
           snippet = new vscode.SnippetString(
-            '$1error_log("$" . "$CLIPBOARD: " . print_r($$CLIPBOARD, true) . " - $TM_FILENAME " . __LINE__);'
+            '$1error_log("$" . "$CLIPBOARD: " . print_r($$CLIPBOARD, true) . " - $TM_FILENAME " . __LINE__ . "\\n", 3, "/tmp/clipboard_logger_php.log");'
           );
         } else {
           return;
