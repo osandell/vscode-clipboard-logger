@@ -44,6 +44,11 @@ This extension contributes the following commands:
 
     extension.logClipboard: Log Clipboard
     extension.logClipboardAsVariable: Log Clipboard as Variable
+
+## Building extension
+```bash
+pnpm vsce package --no-dependencies
+```
     
 ## Contributing
 
